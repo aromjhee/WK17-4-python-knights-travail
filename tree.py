@@ -21,15 +21,15 @@ class Node:
     def parent(self):
         return self._parent
 
-    # @parent.setter
-    # def parent(self, node):
-    #     if self.parent != None:
-    #         if self.parent.value == node.value:
-    #             return
-    #         else:
-    #             node.parent = None
-    #     self._parent = node
-    #     node.add_child(self)
+    @parent.setter
+    def parent(self, node):
+        if self.parent != None:
+            if self.parent.value == node.value:
+                return
+            else:
+                node.parent = None
+        self._parent = node
+        node.add_child(self)
     
     def add_child(self, node):
         if node not in self.children:
@@ -44,13 +44,11 @@ class Node:
 testNode = Node('some value')
 childNode = Node('im a child')
 testNode.add_child(childNode)
-print(testNode)
-print(childNode)
-testNode.remove_child(childNode)
-print(testNode)
-print(childNode)
-# print(childNode.value)
-# print(testNode.children)
+# print(testNode)
+print(childNode.parent)
+# testNode.remove_child(childNode)
+# print(testNode)
+# print(childNode)
 
 # node1 = Node("root1")
 # node2 = Node("root2")

@@ -1,5 +1,5 @@
 class Node:
-    __slots__ = ['_value', '_parent', '_children']
+    # __slots__ = ['_value', '_parent', '_children']
 
     def __init__(self, value):
         self._value = value
@@ -23,6 +23,8 @@ class Node:
 
     @parent.setter
     def parent(self, node):
+        if self.parent == node:
+            return
         if self.parent:
             self.parent.remove_child(self)
         self._parent = node
@@ -32,34 +34,51 @@ class Node:
     def add_child(self, node):
         if node not in self.children:
             self._children.append(node)
-            node._parent = self
+            node.parent = self
     
     def remove_child(self, node):
-        self._children.remove(node)
-        node._parent = None
+        if node in self.children:
+            self._children.remove(node)
+            node.parent = None
 
     def depth_search(self, value):
         if self.value == value:
             return self
-        if self.children:
-            next = self.children[0]
-            self.remove_child(next)
-            return next.depth_search(value)
+        
+        for child in self.children:
+            res = child.depth_search(value)
+            if res != None:
+                return res
         
         return None
     
-    # def breadth_search(self, value):
-    #     if self.value == value:
-    #         return self
-    #     if self.children:
+    def breadth_search(self, value):
+        if self.value == value:
+            return self
+        childList = self.children
+        print(childList)
+        while childList:
+            c = childList.pop(0)
+            print(c.value)
+            res = childList[0].breadth_search(value)
+            if res != None:
+                return res
+        
+        return None
 
 
 
 # node1 = Node("root1")
 # node2 = Node("root2")
 # node3 = Node("root3")
+# node4 = Node("root4")
+# node5 = Node("root5")
+# node6 = Node("root6")
 
 # node2.parent = node1
-# node3.parent = node2
+# node3.parent = node1
+# node4.parent = node2
+# node5.parent = node2
+# node6.parent = node3
 
-# print(node1.depth_search('asdf'))
+# print(node1.breadth_search('root6'))

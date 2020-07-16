@@ -7,7 +7,7 @@ class Node:
         self._children = []
 
     def __repr__(self):
-        return f'<Node value: {self._value}, parent: {self._parent}, children: {list(map(lambda x: x.value, self._children))}>'
+        return f'<Node value: {self._value}, parent: {self._parent}, children: {list(map(lambda x: x.value, self._children))}s>'
 
     @property
     def value(self):

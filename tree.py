@@ -46,6 +46,7 @@ class Node:
             return self
         
         for child in self.children:
+            print(child.value)
             res = child.depth_search(value)
             if res != None:
                 return res
@@ -53,19 +54,20 @@ class Node:
         return None
     
     def breadth_search(self, value):
-        if self.value == value:
-            return self
-        childList = self.children
-        print(childList)
-        while childList:
-            c = childList.pop(0)
-            print(c.value)
-            res = childList[0].breadth_search(value)
-            if res != None:
-                return res
-        
-        return None
+        child = []
+        queue = [self]
 
+        while queue:
+            node = queue.pop(0)
+            # print(node.value)
+            if node.value == value:
+                return node
+            else:
+                child = node.children
+                for n in child:
+                    queue.append(n)
+
+        return None
 
 
 # node1 = Node("root1")

@@ -38,15 +38,17 @@ class Node:
     
     def remove_child(self, node):
         self._children.remove(node)
-        node.parent = None
-        self.parent = None
+        node._parent = None
 
 
 testNode = Node('some value')
 childNode = Node('im a child')
 testNode.add_child(childNode)
-# print(testNode.value)
-print(childNode.parent)
+print(testNode)
+print(childNode)
+testNode.remove_child(childNode)
+print(testNode)
+print(childNode)
 # print(childNode.value)
 # print(testNode.children)
 

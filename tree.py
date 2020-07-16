@@ -36,10 +36,10 @@ class Node:
             self._children.append(node)
             node._parent = self
     
-    # def remove_child(self, node):
-    #     self._children.remove(node)
-    #     node.parent = None
-    #     self.parent = None
+    def remove_child(self, node):
+        self._children.remove(node)
+        node.parent = None
+        self.parent = None
 
 
 testNode = Node('some value')

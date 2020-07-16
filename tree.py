@@ -38,28 +38,28 @@ class Node:
         self._children.remove(node)
         node._parent = None
 
-
-# testNode = Node('some value')
-# childNode = Node('im a child')
-# print(childNode)
-# childNode.parent = testNode
-# print(childNode)
-# print(testNode)
-# testNode.remove_child(childNode)
-# print(childNode)
-# print(testNode)
-
-node1 = Node("root1")
-node2 = Node("root2")
-node3 = Node("root3")
-
-node3.parent = node1
-node3.parent = node2
+    def depth_search(self, value):
+        if self.value == value:
+            return self
+        if self.children:
+            next = self.children[0]
+            self.remove_child(next)
+            return next.depth_search(value)
+        
+        return None
+    
+    # def breadth_search(self, value):
+    #     if self.value == value:
+    #         return self
+    #     if self.children:
 
 
-print(node1.children)
-print(node2.children)
-# print(node1)
-# print(node2)
-# print(node3)
 
+# node1 = Node("root1")
+# node2 = Node("root2")
+# node3 = Node("root3")
+
+# node2.parent = node1
+# node3.parent = node2
+
+# print(node1.depth_search('asdf'))

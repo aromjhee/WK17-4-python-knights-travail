@@ -7,7 +7,7 @@ class Node:
         self._children = []
 
     def __repr__(self):
-        return f'<Node value: {self._value}, parent: {self._parent}, children: {list(map(lambda x: x.value, self._children))}s>'
+        return f'<Node value: {self._value}, parent: {self._parent.value}, children: {list(map(lambda x: x.value, self._children))}s>'
 
     @property
     def value(self):
@@ -46,7 +46,7 @@ class Node:
             return self
         
         for child in self.children:
-            print(child.value)
+            # print(child.value)
             res = child.depth_search(value)
             if res != None:
                 return res

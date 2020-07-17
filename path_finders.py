@@ -27,7 +27,19 @@ class KnightPathFinder:
         self._considered_positions = considered | possible_moves
         return possible_moves
 
+    def build_move_tree(self):
+        tree = [self._root]
+
+        while tree:
+            node = tree.pop(0)
+            moves = self.new_move_positions(node.value)
+            for move in moves:
+                node.add_child(Node(move))
+                tree.append(Node(move))
+
 
 
 finder = KnightPathFinder((0, 0))
-print(finder.new_move_positions((0, 0)))
+finder.build_move_tree()
+print(finder._root.children)
+# print(finder.new_move_positions((0, 0)))
